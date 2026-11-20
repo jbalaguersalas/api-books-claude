@@ -39,14 +39,6 @@ npm run typecheck  # comprobar tipos
 
 No necesita base de datos ni `.env`.
 
-## Qué aprendí en clase
-
-**Separar las rutas de los datos.** Las rutas no tocan el array de libros. Hablan con una interfaz, `BooksStorage`, y la clase `BooksStorageInMemory` es la que guarda los libros. Para pasar a MongoDB bastaría con escribir otra clase con los mismos métodos y cambiar una línea en las rutas.
-
-**La diferencia entre PUT y PATCH.** PUT sustituye el libro entero y pide todos los campos. PATCH solo cambia lo que llega y valida cada campo con las mismas reglas que al crear.
-
-**A no fiarme de lo que llega en la URL.** El id solo vale si son dígitos, así que `1.0`, `0x1` o `1e2` dan 400. Y en los filtros, `Number(" ")` daría 0, por eso los parámetros en blanco se ignoran.
-
 ## Tecnologías
 
 - **Express 5** con TypeScript

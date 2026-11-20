@@ -1,6 +1,15 @@
 import express from "express";
 import type { NextFunction, Request, Response } from "express";
-import booksRouter from "./routes/books-routes";
+import { BooksService, ValidationError } from "./application/books-service";
+import type { BooksRepository } from "./domain/books-repository";
+import { createBooksRouter } from "./http/books-routes";
+import { BooksRepositoryInMemory } from "./infrastructure/books-repository-in-memory";
+
+// Para cambiar de almacenamiento (memoria, MongoDB...), cambia SOLO esta línea
+const repository: BooksRepository = new BooksRepositoryInMemory(); // la despensa
+const service = new BooksService(repository);                      // el cocinero recibe la despensa
+const booksRouter = createBooksRouter(service);                    // el camarero recibe al cocinero
+
 
 const app = express();
 const PORT = 3000;
@@ -42,10 +51,12 @@ app.use((req, res) => {
 
 // 6. Ha ocurrido un error: respuesta JSON sin detalles internos
 app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
-  if (err instanceof SyntaxError) {
-    res.status(400).json({ error: "El body no es un JSON válido" });
+
+  if (err instanceof ValidationError) {
+    res.status(400).json(err.errors ? { errors: err.errors } : { error: err.message });
     return;
   }
+
 
   console.error(err);
   res.status(500).json({ error: "Error interno del servidor" });

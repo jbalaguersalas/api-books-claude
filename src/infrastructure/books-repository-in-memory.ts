@@ -1,5 +1,6 @@
-import booksData from "../data/books.json";
-import type { Book, BookData, BooksStorage } from "./books-storage";
+import booksData from "./data/books.json";
+import type { Book, BookData } from "../domain/book";
+import type { BooksRepository } from "../domain/books-repository";
 
 /**
  * Almacenamiento de libros en memoria.
@@ -7,7 +8,7 @@ import type { Book, BookData, BooksStorage } from "./books-storage";
  * Arranca con los libros de `data/books.json`. Los cambios se pierden al
  * reiniciar el servidor.
  */
-export class BooksStorageInMemory implements BooksStorage {
+export class BooksRepositoryInMemory implements BooksRepository {
   private books: Book[] = [...booksData];
 
   async findAll(): Promise<Book[]> {

@@ -1,10 +1,10 @@
 # API de libros con Express
 
-Código que hicimos en clase en el bootcamp de Full Stack de The Bridge.
+Código que hice en clase en el bootcamp de Full Stack de The Bridge.
 
 Es una API de un catálogo de libros hecha con Express y TypeScript. Los libros se guardan en memoria: arranca con los de `src/data/books.json` y los cambios se pierden al reiniciar.
 
-En esta clase practicamos cómo trabajar con un agente de código en un proyecto. Antes de escribir nada, el repo ya tenía las normas del proyecto (código en inglés, ramas `feature/...`, no instalar librerías sin preguntar) y un documento de requisitos en [`docs/prd-books.md`](docs/prd-books.md) con qué tiene que hacer la API y cuándo se da por terminada. Cada funcionalidad entró por su rama y su pull request. También dejamos guardada una tarea para el agente que inventa libros de prueba con títulos absurdos, como "Croquetas asíncronas".
+En esta clase practiqué cómo trabajar con un agente de código en un proyecto. Antes de escribir nada, el repo ya tenía las normas del proyecto (código en inglés, ramas `feature/...`, no instalar librerías sin preguntar) y un documento de requisitos en [`docs/prd-books.md`](docs/prd-books.md) con qué tiene que hacer la API y cuándo se da por terminada. Cada funcionalidad entró por su rama y su pull request. También dejé guardada una tarea para el agente que inventa libros de prueba con títulos absurdos, como "Croquetas asíncronas".
 
 ## Rutas
 
@@ -39,7 +39,7 @@ npm run typecheck  # comprobar tipos
 
 No necesita base de datos ni `.env`.
 
-## Qué vimos en clase
+## Qué aprendí en clase
 
 **Separar las rutas de los datos.** Las rutas no tocan el array de libros. Hablan con una interfaz, `BooksStorage`, y la clase `BooksStorageInMemory` es la que guarda los libros. Para pasar a MongoDB bastaría con escribir otra clase con los mismos métodos y cambiar una línea en las rutas.
 
